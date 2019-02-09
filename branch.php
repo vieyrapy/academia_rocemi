@@ -65,14 +65,14 @@ $_GET['action']="";
 
 if(isset($_REQUEST['act']) && @$_REQUEST['act']=="1")
 {
-$errormsg = "<div class='alert alert-success'><strong>Success!</strong> Branch Add successfully</div>";
+$errormsg = "<div class='alert alert-success'><strong>Exclente!</strong> acabas de agregar un nuevo curso</div>";
 }else if(isset($_REQUEST['act']) && @$_REQUEST['act']=="2")
 {
-$errormsg = "<div class='alert alert-success'><strong>Success!</strong> Branch Edit successfully</div>";
+$errormsg = "<div class='alert alert-warning'><strong>Bien!</strong> acabas de editar un curso</div>";
 }
 else if(isset($_REQUEST['act']) && @$_REQUEST['act']=="3")
 {
-$errormsg = "<div class='alert alert-success'><strong>Success!</strong> Branch Delete successfully</div>";
+$errormsg = "<div class='alert alert-danger'><strong>Atención!</strong> acabas de eliminar un curso</div>";
 }
 
 ?>

@@ -72,11 +72,11 @@ if (isset($_GET['action']) && $_GET['action'] == "edit") {
 }
 
 if (isset($_REQUEST['act']) && @$_REQUEST['act'] == "1") {
-    $errormsg = "<div class='alert alert-success'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Se agrego con exito</div>";
+    $errormsg = "<div class='alert alert-success'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Excelente!</strong> Acabas de agregar un nuevo estudiante. Genial!!! </div>";
 } else if (isset($_REQUEST['act']) && @$_REQUEST['act'] == "2") {
-    $errormsg = "<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> <strong>Success!</strong> Se ha editado con éxito</div>";
+    $errormsg = "<div class='alert alert-warning'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> <strong>Bien!</strong> Acabas de editar los datos de un estudiante</div>";
 } else if (isset($_REQUEST['act']) && @$_REQUEST['act'] == "3") {
-    $errormsg = "<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Se eliminó con éxito</div>";
+    $errormsg = "<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Atención!</strong> acabas de eliminar a un estudiante</div>";
 }
 
 ?>

@@ -73,7 +73,7 @@
                         <a href="student.php"><i class="fa fa-users "></i>Estudiantes</a>
                     </li>
 					<li>
-                        <a href="fees.php"><i class="fa fa-inr "></i>Cuotas y Matriculas</a>
+                        <a href="fees.php"><i class="fa fa-inr "></i>Pagos</a>
                     </li>
 					 <li>
                         <a href="report.php"><i class="fa fa-file-text "></i>Reportes </a>

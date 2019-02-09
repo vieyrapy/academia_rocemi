@@ -88,7 +88,8 @@ text-align:center;
                                     <div class="form-group">
                                            
                                             <span class="pull-right">
-                                                   <a href="index.html" >Olvidaste tu contraseña? </a> 
+                                                   <a href="https://www.facebook.com/hectorvieyrapy" >Olvidaste tu contraseña? </a> 
+                                                   Recuerda que recuperar la contraseña tiene costo Gs. Anotalo!!!
                                             </span>
                                      </div>
                                      
