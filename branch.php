@@ -77,32 +77,7 @@ $errormsg = "<div class='alert alert-success'><strong>Success!</strong> Branch D
 
 ?>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ROCEMI SYSTEM</title>
 
-    <!-- BOOTSTRAP STYLES-->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <!-- FONTAWESOME STYLES-->
-    <link href="css/font-awesome.css" rel="stylesheet" />
-       <!--CUSTOM BASIC STYLES-->
-    <link href="css/basic.css" rel="stylesheet" />
-    <!--CUSTOM MAIN STYLES-->
-    <link href="css/custom.css" rel="stylesheet" />
-	
-
-
-    <!-- GOOGLE FONTS-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-	
-	 <script src="js/jquery-1.10.2.js"></script>
-
-
-	
-</head>
 <?php
 include("php/header.php");
 ?>
@@ -340,18 +315,8 @@ echo $errormsg;
     </div>
     <!-- /. WRAPPER  -->
 
- <div id="footer-sec">
-       Sistema de Cuotas y Matricukas | Developed By : <a href="" target="_blank">ROCEMI</a>
-    </div>
+    <?php
+      include "footer.php";
+    ?>
    
   
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script src="js/bootstrap.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="js/jquery.metisMenu.js"></script>
-       <!-- CUSTOM SCRIPTS -->
-    <script src="js/custom1.js"></script>
-
-    
-</body>
-</html>

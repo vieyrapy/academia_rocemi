@@ -167,7 +167,7 @@ if($fq->num_rows>0)
 {
 
 
- $sql = "select s.id,s.sname,s.balance,s.fees,s.contact,b.branch,s.joindate from student as s,branch as b where b.id=s.branch  and s.id='".$sid."'";
+$sql = "select s.id,s.sname,s.balance,s.fees,s.contact,b.branch,s.joindate from student as s,branch as b where b.id=s.branch  and s.id='".$sid."'";
 $sq = $conn->query($sql);
 $sr = $sq->fetch_assoc();
 
@@ -182,7 +182,7 @@ echo '
 <td>'.$sr['branch'].'</td>
 </tr>
 <tr>
-<th>Telefono</th>
+<th>Teléfono</th>
 <td>'.$sr['contact'].'</td>
 <th>Fecha de Inscr.</th>
 <td>'.date("d-m-Y", strtotime($sr['joindate'])).'</td>
@@ -226,7 +226,7 @@ echo '
 <tr>
 <th>Total Costo: 
 </th>
-<td>'.$sr['fees'].'
+<td>'.$sr['fees'].'  
 </td>
 </tr>
 

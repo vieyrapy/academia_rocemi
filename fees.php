@@ -1,95 +1,58 @@
 <?php
-include("php/dbconnect.php");
-include("php/checklogin.php");
-$errormsg= '';
-if(isset($_POST['save']))
-{
-$paid = mysqli_real_escape_string($conn,$_POST['paid']);
-$submitdate = mysqli_real_escape_string($conn,$_POST['submitdate']);
-$transcation_remark = mysqli_real_escape_string($conn,$_POST['transcation_remark']);
-$sid = mysqli_real_escape_string($conn,$_POST['sid']);
+include "php/dbconnect.php";
+include "php/checklogin.php";
+$errormsg = '';
+if (isset($_POST['save'])) {
+    $paid               = mysqli_real_escape_string($conn, $_POST['paid']);
+    $submitdate         = mysqli_real_escape_string($conn, $_POST['submitdate']);
+    $transcation_remark = mysqli_real_escape_string($conn, $_POST['transcation_remark']);
+    $sid                = mysqli_real_escape_string($conn, $_POST['sid']);
 
-$sql = "select fees,balance  from student where id = '$sid'";
-$sq = $conn->query($sql);
-$sr = $sq->fetch_assoc();
-$totalfee = $sr['fees'];
-if($sr['balance']>0)
-{
-$sql = "insert into fees_transaction(stdid,submitdate,transcation_remark,paid) values('$sid','$submitdate','$transcation_remark','$paid') ";
-$conn->query($sql);
-$sql = "SELECT sum(paid) as totalpaid FROM fees_transaction WHERE stdid = '$sid'";
-$tpq = $conn->query($sql);
-$tpr = $tpq->fetch_assoc();
-$totalpaid = $tpr['totalpaid'];
-$tbalance = $totalfee - $totalpaid;
+    $sql      = "select fees,balance  from student where id = '$sid'";
+    $sq       = $conn->query($sql);
+    $sr       = $sq->fetch_assoc();
+    $totalfee = $sr['fees'];
+    if ($sr['balance'] > 0) {
+        $sql = "insert into fees_transaction(stdid,submitdate,transcation_remark,paid) values('$sid','$submitdate','$transcation_remark','$paid') ";
+        $conn->query($sql);
+        $sql       = "SELECT sum(paid) as totalpaid FROM fees_transaction WHERE stdid = '$sid'";
+        $tpq       = $conn->query($sql);
+        $tpr       = $tpq->fetch_assoc();
+        $totalpaid = $tpr['totalpaid'];
+        $tbalance  = $totalfee - $totalpaid;
 
-$sql = "update student set balance='$tbalance' where id = '$sid'";
-$conn->query($sql);
+        $sql = "update student set balance='$tbalance' where id = '$sid'";
+        $conn->query($sql);
 
- echo '<script type="text/javascript">window.location="fees.php?act=1";</script>';
-}
+        echo '<script type="text/javascript">window.location="fees.php?act=1";</script>';
+    }
 }
 
-if(isset($_REQUEST['act']) && @$_REQUEST['act']=="1")
-{
-$errormsg = "<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Success!</strong> Fees submit successfully</div>";
+if (isset($_REQUEST['act']) && @$_REQUEST['act'] == "1") {
+    $errormsg = "<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Excelente!</strong> nuevo pago enviado</div>";
 }
 
 ?>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rainbow English Classes</title>
 
-    <!-- BOOTSTRAP STYLES-->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <!-- FONTAWESOME STYLES-->
-    <link href="css/font-awesome.css" rel="stylesheet" />
-       <!--CUSTOM BASIC STYLES-->
-    <link href="css/basic.css" rel="stylesheet" />
-    <!--CUSTOM MAIN STYLES-->
-    <link href="css/custom.css" rel="stylesheet" />
-    <!-- GOOGLE FONTS-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-	
-	<link href="css/ui.css" rel="stylesheet" />
-	<link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />	
-	<link href="css/datepicker.css" rel="stylesheet" />	
-	   <link href="css/datatable/datatable.css" rel="stylesheet" />
-	   
-    <script src="js/jquery-1.10.2.js"></script>	
-    <script type='text/javascript' src='js/jquery/jquery-ui-1.10.1.custom.min.js'></script>
-   <script type="text/javascript" src="js/validation/jquery.validate.min.js"></script>
- 
-		 <script src="js/dataTable/jquery.dataTables.min.js"></script>
-		
-		 
-	
-</head>
 <?php
-include("php/header.php");
+include "php/header.php";
 ?>
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Pagos  
-						
-						</h1>
-
+                        <h1 class="page-head-line">Pagos</h1>
                     </div>
                 </div>
-				
-				
-				
-    	<?php
-		echo $errormsg;
-		?>
-		
-		
+
+
+
+      <?php
+echo $errormsg;
+?>
+
+
 
 <div class="row" style="margin-bottom:20px;">
 <div class="col-md-12">
@@ -100,28 +63,27 @@ include("php/header.php");
     <label for="email">Nombre</label>
     <input type="text" class="form-control" id="student" name="student">
   </div>
-  
+
    <div class="form-group">
     <label for="email"> Fecha </label>
     <input type="text" class="form-control" id="doj" name="doj" >
   </div>
-  
+
   <div class="form-group">
     <label for="email"> Curso </label>
     <select  class="form-control" id="branch" name="branch" >
-		<option value="" >Seleccionar curso</option>
+    <option value="" >Seleccionar curso</option>
                                     <?php
-									$sql = "select * from branch where delete_status='0' order by branch.branch asc";
-									$q = $conn->query($sql);
-									
-									while($r = $q->fetch_assoc())
-									{
-									echo '<option value="'.$r['id'].'"  '.(($branch==$r['id'])?'selected="selected"':'').'>'.$r['branch'].'</option>';
-									}
-									?>
-	</select>
+$sql = "select * from branch where delete_status='0' order by branch.branch asc";
+$q   = $conn->query($sql);
+
+while ($r = $q->fetch_assoc()) {
+    echo '<option value="' . $r['id'] . '"  ' . (($branch == $r['id']) ? 'selected="selected"' : '') . '>' . $r['branch'] . '</option>';
+}
+?>
+  </select>
   </div>
-  
+
    <button type="button" class="btn btn-success btn-sm" id="find" > Encontrar </button>
   <button type="reset" class="btn btn-danger btn-sm" id="clear" > Limpiar </button>
 </form>
@@ -139,16 +101,16 @@ $('#doj').datepicker( {
         changeYear: true,
         showButtonPanel: false,
         dateFormat: 'mm/yy',
-        onClose: function(dateText, inst) { 
+        onClose: function(dateText, inst) {
             $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
         }
     });
-	
+
 */
-	
-/******************/	
-	 $("#doj").datepicker({
-         
+
+/******************/
+   $("#doj").datepicker({
+
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
@@ -170,47 +132,47 @@ $('#doj').datepicker( {
     });
 
 /*****************/
-	
+
 $('#student').autocomplete({
-		      	source: function( request, response ) {
-		      		$.ajax({
-		      			url : 'ajx.php',
-		      			dataType: "json",
-						data: {
-						   name_startsWith: request.term,
-						   type: 'studentname'
-						},
-						 success: function( data ) {
-						 
-							 response( $.map( data, function( item ) {
-							
-								return {
-									label: item,
-									value: item
-								}
-							}));
-						}
-						
-						
-						
-		      		});
-		      	}
-				/*,
-		      	autoFocus: true,
-		      	minLength: 0,
+            source: function( request, response ) {
+              $.ajax({
+                url : 'ajx.php',
+                dataType: "json",
+            data: {
+               name_startsWith: request.term,
+               type: 'studentname'
+            },
+             success: function( data ) {
+
+               response( $.map( data, function( item ) {
+
+                return {
+                  label: item,
+                  value: item
+                }
+              }));
+            }
+
+
+
+              });
+            }
+        /*,
+            autoFocus: true,
+            minLength: 0,
                  select: function( event, ui ) {
-						  var abc = ui.item.label.split("-");
-						  //alert(abc[0]);
-						   $("#student").val(abc[0]);
-						   return false;
+              var abc = ui.item.label.split("-");
+              //alert(abc[0]);
+               $("#student").val(abc[0]);
+               return false;
 
-						  },
+              },
                  */
-  
 
-						  
-		      });
-	
+
+
+          });
+
 
 $('#find').click(function () {
 mydatatable();
@@ -222,21 +184,21 @@ $('#clear').click(function () {
 $('#searchform')[0].reset();
 mydatatable();
         });
-		
+
 function mydatatable()
 {
-        
-              $("#subjectresult").html('<table class="table table-striped table-bordered table-hover" id="tSortable22"><thead><tr><th>Name/Contact</th><th>Fees</th><th>Balance</th><th>Branch</th><th>DOJ</th><th>Action</th></tr></thead><tbody></tbody></table>');
-			  
-			    $("#tSortable22").dataTable({
-							      'sPaginationType' : 'full_numbers',
-							     "bLengthChange": false,
+
+              $("#subjectresult").html('<table class="table table-striped table-bordered table-hover" id="tSortable22"><thead><tr><th>Nombre/Telef.</th><th>Costo</th><th>Saldo</th><th>Curso</th><th>Fecha</th><th>Acción</th></tr></thead><tbody></tbody></table>');
+
+          $("#tSortable22").dataTable({
+                    'sPaginationType' : 'full_numbers',
+                   "bLengthChange": false,
                   "bFilter": false,
                   "bInfo": false,
-							       'bProcessing' : true,
-							       'bServerSide': true,
-							       'sAjaxSource': "datatable.php?"+$('#searchform').serialize()+"&type=feesearch",
-							       'aoColumnDefs': [{
+                     'bProcessing' : true,
+                     'bServerSide': true,
+                     'sAjaxSource': "datatable.php?"+$('#searchform').serialize()+"&type=feesearch",
+                     'aoColumnDefs': [{
                                    'bSortable': false,
                                    'aTargets': [-1] /* 1st one, start by the right */
                                                 }]
@@ -244,29 +206,29 @@ function mydatatable()
 
 
 }
-		
+
 ////////////////////////////
  $("#tSortable22").dataTable({
-			     
+
                   'sPaginationType' : 'full_numbers',
-				  "bLengthChange": false,
+          "bLengthChange": false,
                   "bFilter": false,
                   "bInfo": false,
-                  
+
                   'bProcessing' : true,
-				  'bServerSide': true,
+          'bServerSide': true,
                   'sAjaxSource': "datatable.php?type=feesearch",
-				  
-			      'aoColumnDefs': [{
+
+            'aoColumnDefs': [{
                   'bSortable': false,
                   'aTargets': [-1] /* 1st one, start by the right */
               }]
             });
 
-///////////////////////////		
+///////////////////////////
 
 
-	
+
 });
 
 
@@ -279,7 +241,7 @@ $.ajax({
             data: {student:sid,req:'1'},
             success: function (data) {
               $('#formcontent').html(data);
-			  $("#myModal").modal({backdrop: "static"});
+        $("#myModal").modal({backdrop: "static"});
             }
           });
 
@@ -289,7 +251,7 @@ $.ajax({
 </script>
 
 
-		
+
 
 <style>
 #doj .ui-datepicker-calendar
@@ -298,57 +260,58 @@ display:none;
 }
 
 </style>
-		
-		<div class="panel panel-default">
+
+    <div class="panel panel-default">
                         <div class="panel-heading">
-                           Administrar pagos  
+                           Administrar pagos
                         </div>
                         <div class="panel-body">
                             <div class="table-sorting table-responsive" id="subjectresult">
                                 <table class="table table-striped table-bordered table-hover" id="tSortable22">
                                     <thead>
                                         <tr>
-                                          
-                                            <th>Nombre</th>                                            
+
+                                            <th>Nombre</th>
                                             <th>Costo</th>
-											<th>Saldo</th>
-											<th>Curso</th>
-											<th>Fecha</th>
-											<th>Acción</th>
+                                            <th>Saldo</th>
+                                            <th>Curso</th>
+                                            <th>Fecha</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-								    </tbody>
+                                    
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                     
-	
-	<!-------->
-	
-	<!-- Modal -->
+
+
+  <!-------->
+
+  <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Take Fee</h4>
+          <h4 class="modal-title">Detalle de Pagos</h4>
         </div>
         <div class="modal-body" id="formcontent">
-        
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
 
-	
+
     <!--------->
-    			
-            
+
+
             </div>
             <!-- /. PAGE INNER  -->
         </div>
@@ -356,17 +319,7 @@ display:none;
     </div>
     <!-- /. WRAPPER  -->
 
-    <div id="footer-sec">
-       Sistema de Cuotas y Matricukas | Developed By : <a href="" target="_blank">ROCEMI</a>
-    </div>
-  
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script src="js/bootstrap.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="js/jquery.metisMenu.js"></script>
-       <!-- CUSTOM SCRIPTS -->
-    <script src="js/custom1.js"></script>
+    <?php
+include "footer.php";
+?>
 
-    
-</body>
-</html>

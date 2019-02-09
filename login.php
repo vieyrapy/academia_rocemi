@@ -39,7 +39,7 @@ $error = 'Invalid Username or Password';
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TPI Payment System</title>
+    <title>ROCEMI System </title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="css/bootstrap.css" rel="stylesheet" />
@@ -64,7 +64,7 @@ text-align:center;
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
                           
                             <div class="panel-body" style="background-color: #E2E2E2; margin-top:50px; border:solid 3px #0e0e0e;">
-							  <h3 class="myhead">SMP en Linea</h3>
+							  <h3 class="myhead">Sistema de Matriculas y cuotas</h3>
                                 <form role="form" action="login.php" method="post">
                                     <hr />
 									<?php
@@ -88,7 +88,7 @@ text-align:center;
                                     <div class="form-group">
                                            
                                             <span class="pull-right">
-                                                   <a href="index.html" >Olvidaste tu Clave ? </a> 
+                                                   <a href="index.html" >Olvidaste tu contraseña? </a> 
                                             </span>
                                      </div>
                                      
