@@ -188,3 +188,6 @@ body {
         border-radius: 0px;
     }
 }
+.hide-calendar .ui-datepicker-calendar {
+    display: none;
+}

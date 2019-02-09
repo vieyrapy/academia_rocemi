@@ -56,7 +56,7 @@ echo '  <form class="form-horizontal" id ="signupForm1" action="fees.php" method
     <label class="control-label col-sm-2" for="email">Fecha:</label>
     <div class="col-sm-10">
 	
-      <input type="text" class="form-control" name="submitdate"  id="submitdate" style="background:#fff;"  readonly />
+      <input type="text" class="form-control datepicker-without-calendar" name="submitdate"  id="submitdate" style="background:#fff;"  readonly disable />
     </div>
   </div>
   
@@ -80,15 +80,19 @@ echo '  <form class="form-horizontal" id ="signupForm1" action="fees.php" method
 </form>
 
 <script type="text/javascript">
+
 $(document).ready( function() {
 $("#submitdate").datepicker( {
-        changeMonth: true,
-        changeYear: true,
-       
-        dateFormat: "yy-mm-dd",
+
+        showButtonPanel: true,
+        dateFormat: "dd-mm-yy",
+        beforeShow: function(input) {
+    $(input).datepicker("widget").addClass("hide-calendar");
+  },
       
-    });
+    }).datepicker("setDate", new Date());
 	
+
 	
 ///////////////////////////
 
@@ -221,6 +225,9 @@ echo '
     </tbody>
   </table>
  </div> 
+ 
+
+
  
 <table style="width:150px;" >
 <tr>
