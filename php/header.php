@@ -40,8 +40,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a href="index.php"> 
-                        <img src="img/logo_academia_system.png" class="navbar-brand"  alt="ROCEMI Academia" >
+                <a class="navbar-brand" href="index.php"> 
+                        <img src="img/logo_academia_system.png" alt="ROCEMI Academia" height="60" width="224">
                 </a>
             </div>
 
