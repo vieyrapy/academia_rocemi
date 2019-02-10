@@ -10,7 +10,7 @@ DEFINE("BASE_URL","http://localhost/rainbow/");
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PSWD', ''); 
 DEFINE ('DB_HOST', 'localhost'); 
-DEFINE ('DB_NAME', 'paysystem'); 
+DEFINE ('DB_NAME', 'academiadb'); 
 
 date_default_timezone_set('Asia/Calcutta'); 
 $conn =  new mysqli(DB_HOST,DB_USER,DB_PSWD,DB_NAME);
