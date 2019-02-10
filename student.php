@@ -435,8 +435,8 @@ yearRange: "1970:<?php echo date('Y'); ?>"
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name/Contact</th>
-                                            <th>Fecha de Inscripción</th>
+                                            <th>Nombre/Telef.</th>
+                                            <th>Fecha/Inscr.</th>
                                             <th>Costo</th>
 											<th>Saldo</th>
 											<th>Acción</th>
@@ -452,7 +452,7 @@ $sql = "select * from student where delete_status='0'";
         echo '<tr ' . (($r['balance'] > 0) ? 'class="danger"' : '') . '>
                                             <td>' . $i . '</td>
                                             <td>' . $r['sname'] . '<br/>' . $r['contact'] . '</td>
-                                            <td>' . date("d M y", strtotime($r['joindate'])) . '</td>
+                                            <td>' . date("d M Y", strtotime($r['joindate'])) . '</td>
                                             <td>' . $r['fees'] . '</td>
 											<td>' . $r['balance'] . '</td>
 											<td>

@@ -36,7 +36,7 @@ include("php/header.php");
                         <div class="main-box mb-dull">
                             <a href="fees.php">
                                 <i class="fa fa-inr fa-5x"></i>
-                                <h5>Pagos</h5>
+                                <h5>Pagar</h5>
                             </a>
                         </div>
                     </div>

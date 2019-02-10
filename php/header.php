@@ -39,7 +39,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">ROCEMI Academia </a>
+                
+                <a href="index.php"> 
+                        <img src="img/logo_academia_system.png" class="navbar-brand"  alt="ROCEMI Academia" >
+                </a>
             </div>
 
         </nav>
@@ -73,7 +76,7 @@
                         <a href="student.php"><i class="fa fa-users "></i>Estudiantes</a>
                     </li>
 					<li>
-                        <a href="fees.php"><i class="fa fa-inr "></i>Pagos</a>
+                        <a href="fees.php"><i class="fa fa-inr "></i>Pagar</a>
                     </li>
 					 <li>
                         <a href="report.php"><i class="fa fa-file-text "></i>Reportes </a>
