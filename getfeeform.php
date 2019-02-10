@@ -85,7 +85,7 @@ $(document).ready( function() {
 $("#submitdate").datepicker( {
 
         showButtonPanel: true,
-        dateFormat: "dd-mm-yy",
+        dateFormat: "yy-mm-dd",
         beforeShow: function(input) {
     $(input).datepicker("widget").addClass("hide-calendar");
   },
